@@ -19,7 +19,7 @@ pnpm install
 pnpm dev
 ```
 
-Dev server: http://localhost:6006
+Dev server: http://localhost:3000
 
 ```bash
 pnpm build && pnpm start
@@ -28,7 +28,7 @@ pnpm build && pnpm start
 ## Docker
 
 ```bash
-PORT=6010 docker compose up --build
+PORT=3010 docker compose up --build
 ```
 
-`PORT` is the host port. The app inside the container still listens on `6006`. After `next build`, the image runs `obfuscate-hogoshi .next`. Local `pnpm dev` stays readable. Set `HUGEICONS_NPM_TOKEN` before the image build. In Dokploy, point the domain at container port `6006`.
+The process binds `PORT`. When it is unset, dev and start use `3000`. Compose publishes that same port. After `next build`, the image runs `obfuscate-hogoshi .next`. Local `pnpm dev` stays readable. Set `HUGEICONS_NPM_TOKEN` before the image build. In Dokploy, set `PORT` and point the domain at that container port.

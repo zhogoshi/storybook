@@ -5,5 +5,7 @@ services:
       args:
         HUGEICONS_NPM_TOKEN: ${HUGEICONS_NPM_TOKEN:-}
         HOGOSHI_NPM_TOKEN: ${HOGOSHI_NPM_TOKEN:-}
+    environment:
+      PORT: ${PORT:-3000}
     ports:
-      - "${PORT:-6006}:6006"
+      - "${PORT:-3000}:${PORT:-3000}"

@@ -2,9 +2,9 @@
   "name": "hogoshi-storybook",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack --port 6006",
+    "dev": "next dev --turbopack --port ${PORT:-3000}",
     "build": "next build",
-    "start": "next start --port 6006",
+    "start": "next start --port ${PORT:-3000}",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

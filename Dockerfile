@@ -7,6 +7,6 @@ RUN corepack enable && corepack prepare pnpm@10.33.2 --activate
 WORKDIR /app
 COPY . .
 RUN pnpm install && pnpm build && pnpm exec obfuscate-hogoshi .next
-EXPOSE 6006
+EXPOSE 3000
 ENV HOSTNAME=0.0.0.0
 CMD ["pnpm", "start"]
