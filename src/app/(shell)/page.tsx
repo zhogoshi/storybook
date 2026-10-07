@@ -1,5 +1,5 @@
-import { LazyIndexPage } from "@/storybook/pages/lazy-pages";
+import { StorybookIndexPage } from "@/storybook/pages/index-page";
 
 export default function Page() {
-  return <LazyIndexPage />;
+  return <StorybookIndexPage />;
 }

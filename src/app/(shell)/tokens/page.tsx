@@ -1,5 +1,5 @@
-import { LazyTokensPage } from "@/storybook/pages/lazy-pages";
+import { StorybookTokensPage } from "@/storybook/pages/tokens-page";
 
 export default function TokensPage() {
-  return <LazyTokensPage />;
+  return <StorybookTokensPage />;
 }

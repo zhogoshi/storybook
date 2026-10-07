@@ -1,4 +1,4 @@
-import { LazyComponentPage } from "@/storybook/pages/lazy-pages";
+import { StorybookComponentPage } from "@/storybook/pages/component-page";
 
 const SLUGS = [
   "button",
@@ -53,5 +53,5 @@ export function generateStaticParams() {
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  return <LazyComponentPage slug={slug} />;
+  return <StorybookComponentPage slug={slug} />;
 }
