@@ -31,4 +31,4 @@ pnpm build && pnpm start
 PORT=6010 docker compose up --build
 ```
 
-`PORT` is the host port. The app inside the container still listens on `6006`. Set `HUGEICONS_NPM_TOKEN` before the image build. In Dokploy, point the domain at container port `6006`.
+`PORT` is the host port. The app inside the container still listens on `6006`. After `next build`, the image runs `obfuscate-hogoshi .next --profile=balanced`. Local `pnpm dev` stays readable. Set `HUGEICONS_NPM_TOKEN` before the image build. In Dokploy, point the domain at container port `6006`.

@@ -1,6 +1,5 @@
 {
   "name": "hogoshi-storybook",
-  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack --port 6006",
@@ -24,6 +23,7 @@
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
+    "obfuscate-hogoshi": "0.1.2",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.3"
   },
