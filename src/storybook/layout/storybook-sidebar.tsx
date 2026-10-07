@@ -191,8 +191,8 @@ export function StorybookSidebar() {
         <StorybookNavItems />
       </SidebarNav>
       <SidebarFooter>
-        <SiteBack hideLabel={collapsed} />
         <ThemeToggle label="Switch theme" hideLabel={collapsed} />
+        <SiteBack hideLabel={collapsed} />
       </SidebarFooter>
     </Sidebar>
   );
