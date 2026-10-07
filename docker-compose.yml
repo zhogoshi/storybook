@@ -3,7 +3,7 @@ services:
     build:
       context: .
       args:
-        HUGEICONS_NPM_TOKEN: ${HUGEICONS_NPM_TOKEN}
-        HOGOSHI_NPM_TOKEN: ${HOGOSHI_NPM_TOKEN}
+        HUGEICONS_NPM_TOKEN: ${HUGEICONS_NPM_TOKEN:-}
+        HOGOSHI_NPM_TOKEN: ${HOGOSHI_NPM_TOKEN:-}
     ports:
-      - "6006:6006"
+      - "${PORT:-6006}:6006"
