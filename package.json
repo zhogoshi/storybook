@@ -1,6 +1,6 @@
 {
   "name": "hogoshi-storybook",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack --port 6006",
@@ -9,8 +9,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@hogoshi/tokens": "file:../ui/packages/tokens",
-    "@hogoshi/ui": "file:../ui/packages/ui",
+    "@hogoshi/tokens": "^0.1.1",
+    "@hogoshi/ui": "^0.1.1",
     "@hugeicons-pro/core-duotone-rounded": "^4.2.2",
     "@hugeicons-pro/core-solid-rounded": "^4.2.2",
     "@hugeicons-pro/core-stroke-rounded": "^4.2.2",
