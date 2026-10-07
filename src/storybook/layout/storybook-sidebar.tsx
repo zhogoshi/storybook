@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowDown01Icon } from "@hugeicons-pro/core-stroke-rounded";
+import { ArrowDown01Icon, ArrowLeft01Icon } from "@hugeicons-pro/core-stroke-rounded";
 import {
   Collapsible,
   CollapsiblePanel,
@@ -27,6 +27,28 @@ import { getStoriesByCategory } from "../model/registry";
 import type { StoryDefinition } from "../model/types";
 import { getStoryIcon } from "../lib/story-icons";
 import { StorybookCommandTrigger } from "./storybook-command";
+
+const SITE = "https://hogoshi.dev";
+
+export function SiteBack({ hideLabel = false }: { hideLabel?: boolean }) {
+  const link = (
+    <a
+      href={SITE}
+      aria-label="Back"
+      className="text-fg-muted hover:bg-bg-subtle hover:text-fg inline-flex h-[calc(var(--row-h)-0.25rem)] w-full cursor-pointer items-center gap-2 overflow-hidden rounded-[var(--radius-sm)] px-3 text-sm whitespace-nowrap outline-none focus-visible:ring-2 focus-visible:ring-ring"
+    >
+      <Icon icon={ArrowLeft01Icon} variant="stroke" size={16} className="shrink-0" />
+      <span className={`${sidebarLabel} ${hideLabel ? "opacity-0" : ""}`}>Back</span>
+    </a>
+  );
+  if (!hideLabel) return link;
+  return (
+    <Tooltip>
+      <TooltipTrigger render={link} />
+      <TooltipContent side="right">Back</TooltipContent>
+    </Tooltip>
+  );
+}
 
 function NavLink({
   href,
@@ -116,16 +138,16 @@ function StorybookSidebarHeader() {
 
   return (
     <SidebarHeader className="group/header relative overflow-hidden px-2">
-      <Link
-        href="/"
-        aria-label="Home"
+      <a
+        href={SITE}
+        aria-label="hogoshi"
         className={`flex min-w-0 items-center gap-2 rounded-[var(--radius-sm)] px-1 whitespace-nowrap outline-none transition-opacity focus-visible:ring-2 focus-visible:ring-ring ${collapsed ? "group-hover/header:pointer-events-none group-hover/header:opacity-0 [@media(hover:none)]:pointer-events-none [@media(hover:none)]:opacity-0" : ""}`}
       >
         <Logo size="sm" className="shrink-0" />
         <span className={`text-sm font-semibold tracking-tight ${sidebarLabel} ${collapsed ? "opacity-0" : ""}`}>
           hogoshi
         </span>
-      </Link>
+      </a>
       <SidebarTrigger
         className={
           collapsed
@@ -169,6 +191,7 @@ export function StorybookSidebar() {
         <StorybookNavItems />
       </SidebarNav>
       <SidebarFooter>
+        <SiteBack hideLabel={collapsed} />
         <ThemeToggle label="Switch theme" hideLabel={collapsed} />
       </SidebarFooter>
     </Sidebar>

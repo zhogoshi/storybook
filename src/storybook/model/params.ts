@@ -27,7 +27,7 @@ export function parseStoryTab(searchParams: URLSearchParams): StoryTab {
 export function parseStoryDevice(searchParams: URLSearchParams): StoryDevice {
   const device = searchParams.get(STORY_DEVICE_PARAM);
   if (device === "phone" || device === "tablet" || device === "desktop") return device;
-  return "desktop";
+  return "phone";
 }
 
 export function parseIconStyle(searchParams: URLSearchParams): IconStyle {

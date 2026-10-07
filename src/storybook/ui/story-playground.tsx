@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CodeBlock, Icon, Tabs, TabsList, TabsTrigger } from "@hogoshi/ui";
 import { AppleIcon, ComputerIcon, GridIcon, SmartPhone01Icon, Tablet01Icon } from "@hugeicons-pro/core-stroke-rounded";
 import { DEVICE_PRESETS } from "../model/params";
@@ -17,6 +17,20 @@ const iconStyles = [
   { id: "ios", icon: AppleIcon, label: "iOS" },
   { id: "basic", icon: GridIcon, label: "Basic" },
 ] as const;
+
+function useNarrowScreen() {
+  const [narrow, setNarrow] = useState(false);
+
+  useLayoutEffect(() => {
+    const query = window.matchMedia("(max-width: 1279px)");
+    const update = () => setNarrow(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  return narrow;
+}
 
 function DeviceFrame({
   device,
@@ -36,7 +50,7 @@ function DeviceFrame({
   const frame = useRef<HTMLIFrameElement>(null);
   const [scale, setScale] = useState(1);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const node = box.current;
     if (!node) return;
     const measure = () => setScale(Math.min(1, node.clientWidth / preset.width));
@@ -59,16 +73,16 @@ function DeviceFrame({
   }, [icons, onPropChange, props]);
 
   return (
-    <div ref={box} className="w-full">
+    <div ref={box} className="w-full min-w-0">
       <div
-        className="border-border bg-bg mx-auto overflow-hidden rounded-[var(--radius-lg)] border shadow-[var(--shadow-md)]"
+        className="border-border bg-bg relative mx-auto max-w-full overflow-hidden rounded-[var(--radius-lg)] border shadow-[var(--shadow-md)]"
         style={{ width: preset.width * scale, height: preset.height * scale }}
       >
         <iframe
           ref={frame}
           title={`${preset.label} preview`}
           src={src}
-          className="origin-top-left"
+          className="absolute top-0 left-0 origin-top-left"
           style={{ width: preset.width, height: preset.height, transform: `scale(${scale})` }}
         />
       </div>
@@ -98,6 +112,8 @@ export function StoryPlayground({
   onPropChange: (key: string, value: unknown) => void;
 }) {
   const src = `/preview/${story.slug}`;
+  const narrow = useNarrowScreen();
+  const frameDevice = narrow ? "phone" : device;
 
   return (
     <div className="flex w-full min-w-0 flex-col gap-4">
@@ -119,22 +135,24 @@ export function StoryPlayground({
                 ))}
               </TabsList>
             </Tabs>
-            <Tabs value={device} onValueChange={(value) => onDeviceChange(value as StoryDevice)}>
-              <TabsList>
-                {devices.map((item) => (
-                  <TabsTrigger key={item.id} value={item.id} aria-label={item.label} className="px-2">
-                    <Icon icon={item.icon} variant="stroke" size={16} />
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </Tabs>
+            {narrow ? null : (
+              <Tabs value={device} onValueChange={(value) => onDeviceChange(value as StoryDevice)}>
+                <TabsList>
+                  {devices.map((item) => (
+                    <TabsTrigger key={item.id} value={item.id} aria-label={item.label} className="px-2">
+                      <Icon icon={item.icon} variant="stroke" size={16} />
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            )}
           </div>
         ) : null}
       </div>
       {tab === "code" ? (
         <CodeBlock code={story.code(props)} language="tsx" />
       ) : (
-        <DeviceFrame device={device} src={src} props={props} icons={icons} onPropChange={onPropChange} />
+        <DeviceFrame device={frameDevice} src={src} props={props} icons={icons} onPropChange={onPropChange} />
       )}
     </div>
   );

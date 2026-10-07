@@ -59,7 +59,7 @@ export function useStoryParams(story: StoryDefinition) {
   const setDevice = useCallback(
     (next: StoryDevice) => {
       update((params) => {
-        if (next === "desktop") params.delete(STORY_DEVICE_PARAM);
+        if (next === "phone") params.delete(STORY_DEVICE_PARAM);
         else params.set(STORY_DEVICE_PARAM, next);
       });
     },

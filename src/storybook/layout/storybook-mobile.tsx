@@ -18,15 +18,15 @@ import {
 } from "@hogoshi/ui";
 import { getStoryIcon } from "../lib/story-icons";
 import { useStorybookCommand } from "./storybook-command";
-import { StorybookNavItems } from "./storybook-sidebar";
+import { SiteBack, StorybookNavItems } from "./storybook-sidebar";
 
 export function StorybookMobileHeader() {
   return (
     <header className="border-border bg-bg-elevated/90 flex items-center justify-between gap-3 border-b px-4 pt-[calc(0.75rem+var(--safe-top))] pb-3 backdrop-blur-md md:hidden">
-      <Link href="/" className="flex items-center gap-2 text-sm font-semibold tracking-tight">
+      <a href="https://hogoshi.dev" aria-label="hogoshi" className="flex items-center gap-2 rounded-[var(--radius-sm)] text-sm font-semibold tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-ring">
         <Logo size="sm" />
         hogoshi
-      </Link>
+      </a>
       <ThemeToggle />
     </header>
   );
@@ -65,14 +65,21 @@ export function StorybookMobileBar() {
       </BottomBar>
       <Sheet side="left" open={menu} onOpenChange={setMenu}>
         <SheetContent className="px-2">
-          <SheetTitle className="flex items-center gap-2 px-3 pt-1 text-sm font-semibold">
-            <Logo size="sm" />
-            hogoshi
+          <SheetTitle className="px-3 pt-1 text-sm font-semibold">
+            <a href="https://hogoshi.dev" aria-label="hogoshi" className="flex items-center gap-2 rounded-[var(--radius-sm)] outline-none focus-visible:ring-2 focus-visible:ring-ring">
+              <Logo size="sm" />
+              hogoshi
+            </a>
           </SheetTitle>
           <SidebarProvider>
-            <SidebarNav indicatorClassName="bg-bg-subtle/55" className="px-0">
-              <StorybookNavItems />
-            </SidebarNav>
+            <div className="flex min-h-0 flex-1 flex-col">
+              <SidebarNav indicatorClassName="bg-bg-subtle/55" className="px-0">
+                <StorybookNavItems />
+              </SidebarNav>
+              <div className="shrink-0 pt-2">
+                <SiteBack />
+              </div>
+            </div>
           </SidebarProvider>
         </SheetContent>
       </Sheet>
