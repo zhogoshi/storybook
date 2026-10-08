@@ -9,7 +9,7 @@ export function StorybookLayout({ children }: { children: React.ReactNode }) {
   return (
     <StorybookCommandProvider>
         <SidebarProvider>
-          <div className="bg-bg fixed inset-0 flex overflow-hidden">
+          <div className="bg-bg fixed inset-0 flex h-[100lvh] min-h-[100lvh] overflow-hidden">
             <StorybookSidebar />
             <SidebarInset className="relative flex min-h-0 min-w-0 flex-1 flex-col">
               <StorybookMobileHeader />
