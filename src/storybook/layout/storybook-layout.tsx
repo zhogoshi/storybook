@@ -9,12 +9,12 @@ export function StorybookLayout({ children }: { children: React.ReactNode }) {
   return (
     <StorybookCommandProvider>
         <SidebarProvider>
-          <div className="bg-bg flex h-dvh overflow-hidden">
+          <div className="bg-bg fixed inset-0 flex overflow-hidden">
             <StorybookSidebar />
             <SidebarInset className="flex min-h-0 min-w-0 flex-1 flex-col pr-[var(--safe-right)] pl-[var(--safe-left)] md:pl-0">
               <StorybookMobileHeader />
               <ScrollArea className="min-h-0 flex-1">
-                <div className="mx-auto w-full max-w-4xl px-4 pt-8 pb-[calc(6rem+var(--safe-bottom))] md:px-8 md:pt-[calc(2rem+var(--safe-top))] md:pb-[calc(2rem+var(--safe-bottom))]">
+                <div className="mx-auto w-full max-w-4xl px-4 pt-8 pb-[calc(4.5rem+max(0.5rem,var(--safe-bottom)))] md:px-8 md:pt-[calc(2rem+var(--safe-top))] md:pb-[max(2rem,var(--safe-bottom))]">
                   {children}
                 </div>
               </ScrollArea>
