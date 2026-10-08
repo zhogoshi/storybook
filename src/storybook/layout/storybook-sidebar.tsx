@@ -182,7 +182,7 @@ export function StorybookSidebar() {
   const { collapsed } = useSidebar();
 
   return (
-    <Sidebar>
+    <Sidebar className="pt-[calc(var(--safe-top)+0.5rem)] pb-2">
       <StorybookSidebarHeader />
       <div className="shrink-0 px-2 pb-2">
         <StorybookCommandTrigger compact={collapsed} />

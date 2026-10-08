@@ -22,7 +22,7 @@ import { SiteBack, StorybookNavItems } from "./storybook-sidebar";
 
 export function StorybookMobileHeader() {
   return (
-    <header className="border-border bg-bg-elevated/90 flex items-center justify-between gap-3 border-b px-4 pt-[calc(0.75rem+var(--safe-top))] pb-3 backdrop-blur-md md:hidden">
+    <header className="border-border bg-bg-elevated/90 flex items-center justify-between gap-3 border-b px-4 pt-[calc(var(--safe-top)+1rem)] pb-3 backdrop-blur-md md:hidden">
       <a href="https://hogoshi.dev" aria-label="hogoshi" className="flex items-center gap-2 rounded-[var(--radius-sm)] text-sm font-semibold tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-ring">
         <Logo size="sm" />
         hogoshi
@@ -42,7 +42,7 @@ export function StorybookMobileBar() {
 
   return (
     <>
-      <BottomBar className="right-[max(0.75rem,var(--safe-right))] bottom-[max(0.5rem,var(--safe-bottom))] left-[max(0.75rem,var(--safe-left))]">
+      <BottomBar className="right-[max(0.75rem,var(--safe-right))] bottom-2 left-[max(0.75rem,var(--safe-left))]">
         <BottomBarItem
           active={pathname === "/"}
           icon={pathname === "/" ? home.fill : home.stroke}
@@ -64,7 +64,7 @@ export function StorybookMobileBar() {
         </BottomBarItem>
       </BottomBar>
       <Sheet side="left" open={menu} onOpenChange={setMenu}>
-        <SheetContent className="top-[max(0.75rem,var(--safe-top))] right-auto bottom-[max(0.75rem,var(--safe-bottom))] left-[max(0.75rem,var(--safe-left))] px-2">
+        <SheetContent className="top-[calc(var(--safe-top)+0.75rem)] right-auto bottom-2 left-[max(0.75rem,var(--safe-left))] px-2">
           <SheetTitle className="px-3 pt-1 text-sm font-semibold">
             <a href="https://hogoshi.dev" aria-label="hogoshi" className="flex items-center gap-2 rounded-[var(--radius-sm)] outline-none focus-visible:ring-2 focus-visible:ring-ring">
               <Logo size="sm" />
