@@ -21,13 +21,32 @@ import { useStorybookCommand } from "./storybook-command";
 import { SiteBack, StorybookNavItems } from "./storybook-sidebar";
 
 export function StorybookMobileHeader() {
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const root = document.querySelector("[data-scroll-root]");
+    const read = () => setCompact((root instanceof HTMLElement ? root.scrollTop : window.scrollY) > 24);
+    read();
+    const target: EventTarget = root instanceof HTMLElement ? root : window;
+    target.addEventListener("scroll", read, { passive: true });
+    return () => target.removeEventListener("scroll", read);
+  }, []);
+
   return (
-    <header className="border-border bg-bg-elevated/90 flex items-center justify-between gap-3 border-b px-4 pt-[calc(var(--safe-top)+1rem)] pb-3 backdrop-blur-md md:hidden">
-      <a href="https://hogoshi.dev" aria-label="hogoshi" className="flex items-center gap-2 rounded-[var(--radius-sm)] text-sm font-semibold tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-ring">
-        <Logo size="sm" />
-        hogoshi
-      </a>
-      <ThemeToggle />
+    <header className="pointer-events-none absolute inset-x-0 top-0 z-[var(--z-sticky)] flex justify-center md:hidden">
+      <div
+        className={`pointer-events-auto flex items-center justify-between gap-3 transition-[width,height,margin,border-radius,background-color,border-color,box-shadow] duration-500 ease-[var(--motion-ease)] motion-reduce:transition-none ${
+          compact
+            ? "border-border bg-bg-elevated mt-[calc(var(--safe-top)+0.75rem)] h-12 w-[min(40rem,calc(100%-1.5rem))] rounded-full border px-3 shadow-[var(--shadow-md)]"
+            : "mt-[calc(var(--safe-top)+0.5rem)] h-14 w-full border border-transparent bg-transparent px-4"
+        }`}
+      >
+        <a href="https://hogoshi.dev" aria-label="hogoshi" className="flex items-center gap-2 rounded-[var(--radius-sm)] text-sm font-semibold tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <Logo size="sm" />
+          hogoshi
+        </a>
+        <ThemeToggle />
+      </div>
     </header>
   );
 }

@@ -53,7 +53,13 @@ function DeviceFrame({
   useLayoutEffect(() => {
     const node = box.current;
     if (!node) return;
-    const measure = () => setScale(Math.min(1, node.clientWidth / preset.width));
+    const measure = () => {
+      const available = node.clientWidth;
+      if (!available) return;
+      const byWidth = available / preset.width;
+      const byHeight = window.innerWidth < 1280 ? (window.innerHeight * 0.62) / preset.height : byWidth;
+      setScale(Math.min(1, byWidth, byHeight));
+    };
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(node);
@@ -116,7 +122,7 @@ export function StoryPlayground({
   const frameDevice = narrow ? "phone" : device;
 
   return (
-    <div className="flex w-full min-w-0 flex-col gap-4">
+    <div className="flex w-full min-w-0 flex-col gap-4 overflow-x-hidden">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Tabs value={tab} onValueChange={(value) => onTabChange(value as StoryTab)}>
           <TabsList>
