@@ -3,8 +3,9 @@
 html,
 body {
   height: 100%;
-  min-height: 100lvh;
   min-height: -webkit-fill-available;
+  min-height: 100dvh;
+  background: var(--bg);
 }
 
 [data-sonner-toaster] {

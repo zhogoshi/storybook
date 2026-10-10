@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body className="bg-bg text-fg h-[100lvh] min-h-[100lvh] overflow-hidden antialiased">
+      <body className="bg-bg text-fg h-dvh min-h-dvh overflow-hidden antialiased">
         <ThemeProvider>
           <TooltipProvider>
             <SmoothScroll>

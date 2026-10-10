@@ -31,4 +31,6 @@ pnpm build && pnpm start
 PORT=3010 docker compose up --build
 ```
 
-The process binds `PORT`. When it is unset, dev and start use `3000`. Compose publishes that same port. After `next build`, the image runs `obfuscate-hogoshi .next`. Local `pnpm dev` stays readable. Set `HUGEICONS_NPM_TOKEN` before the image build. In Dokploy, set `PORT` and point the domain at that container port.
+The process binds `PORT`. When it is unset, dev and start use `3000`. Compose publishes that same port. After `next build`, the image runs `obfuscate-hogoshi .next`. Local `pnpm dev` stays readable. Set `HUGEICONS_NPM_TOKEN` before the image build. In Dokploy, set `PORT` and point the domain at that container port. A push to `main` redeploys this app. From the navigator, `node scripts/deploy.mjs storybook` does the same POST.
+
+Routes are `/`, `/tokens`, and `/components/[slug]`. The app is a PWA: manifest, icons, and `viewport-fit=cover`. Phone is the default preview. Below 1280px the device switch stays on phone.
