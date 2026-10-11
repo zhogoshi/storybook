@@ -6,11 +6,10 @@ import { jsx } from "../story-code";
 
 const options = (values: string[]) => values.map((value) => ({ value, label: value }));
 
-const photo = (at: number) => ({
-  src: `https://picsum.photos/id/${[10, 11, 15, 16, 17, 20, 24, 27, 28, 29, 36, 37][at % 12]}/1600/1067`,
-  alt: `Photo ${at + 1}`,
-  name: `photo-${at + 1}.jpg`,
-});
+const photo = (at: number) => {
+  const file = `mark-${(at % 6) + 1}.png`;
+  return { src: `/photos/${file}`, alt: `Mark ${at + 1}`, name: file };
+};
 
 const BUNNY = "https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c0/Big_Buck_Bunny_4K.webm/Big_Buck_Bunny_4K.webm";
 
