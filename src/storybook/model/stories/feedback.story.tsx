@@ -114,6 +114,7 @@ export const codeStory = defineStory({
       options: ["auto", "ts", "json", "bash"].map((value) => ({ value, label: value })),
     },
     showLanguage: { type: "boolean", label: "language label", default: true },
+    scroll: { type: "boolean", label: "scroll", default: false },
     source: { type: "text", label: "code", default: "export const n = 1" },
   },
   render: (props) => (
@@ -122,6 +123,7 @@ export const codeStory = defineStory({
       language={String(props.language)}
       variant={props.variant === "snippet" ? "snippet" : "full"}
       showLanguage={Boolean(props.showLanguage)}
+      scroll={Boolean(props.scroll)}
       className="max-w-md"
     />
   ),

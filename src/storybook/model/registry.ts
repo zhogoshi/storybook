@@ -5,6 +5,7 @@ import { calendarStory, commandStory, contextMenuStory, dialogStory, menuStory, 
 import { checkboxStory, counterStory, sliderStory, switchStory } from "./stories/choice.story";
 import { codeStory, iconStory, pageLoaderStory, scrollStory, spinnerStory, themeStory, toastStory } from "./stories/feedback.story";
 import { inputStory, otpStory, textareaStory } from "./stories/input.story";
+import { chatStory, composerStory } from "./stories/chat.story";
 import { bottomBarStory, navbarStory, sidebarStory } from "./stories/layout.story";
 import { fileUploadStory, imageStory, videoStory } from "./stories/media.story";
 import type { StoryDefinition } from "./types";
@@ -54,6 +55,8 @@ export const STORY_REGISTRY: StoryDefinition[] = [
   pageLoaderStory,
   resultStory,
   codeStory,
+  chatStory,
+  composerStory,
 ];
 
 export const STORY_BY_SLUG = Object.fromEntries(STORY_REGISTRY.map((story) => [story.slug, story]));

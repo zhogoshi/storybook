@@ -124,7 +124,6 @@ const menus = [
   {
     label: "Products",
     links: [
-      { icon: Robot01Icon, title: "Cupify", description: "Trading bot that runs on its own subdomain." },
       { icon: Shield01Icon, title: "Obfuscator", description: "Hashes DOM, styles, variables, and scripts." },
       { icon: SourceCodeIcon, title: "UI kit", description: "Tokens and components built on Base UI." },
     ],
@@ -192,11 +191,6 @@ export const navbarStory = defineStory({
           "NavbarMenus",
           [],
           [
-            jsx(
-              "NavbarMenu",
-              ['label="Products"'],
-              jsx("NavbarMenuLink", ['href="/cupify"', "icon={Robot01Icon}", 'title="Cupify"', 'description="Trading bot"']),
-            ),
             jsx("NavbarMenu", ['label="Resources"'], jsx("NavbarMenuLink", ['href="/docs"', 'title="Docs"'])),
           ].join("\n"),
         ),
