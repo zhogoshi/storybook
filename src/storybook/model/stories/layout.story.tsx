@@ -59,7 +59,7 @@ function SidebarDemo({ collapsed }: { collapsed: boolean }) {
   const current = sections.find((item) => item.id === active)!;
   return (
     <SidebarProvider defaultCollapsed={collapsed}>
-      <div className="bg-bg flex h-dvh w-full overflow-hidden">
+      <div className="bg-bg flex h-app w-full overflow-hidden">
         <Sidebar className="flex">
           <SidebarChrome active={active} onSelect={setActive} />
         </Sidebar>
@@ -147,7 +147,7 @@ const menus = [
 function NavbarDemo() {
   const [active, setActive] = useState<string>("home");
   return (
-    <div className="bg-bg flex min-h-dvh w-full flex-col">
+    <div className="bg-bg flex min-h-app w-full flex-col">
       <Navbar className="static">
         <Logo size="sm" className="mr-2" />
         {pages.map((item) => (
@@ -203,7 +203,7 @@ function BottomBarDemo() {
   const iconFor = useNavIcon();
   const current = sections.find((item) => item.id === active)!;
   return (
-    <div className="bg-bg min-h-dvh">
+    <div className="bg-bg min-h-app">
       <p className="text-fg-muted p-6 text-sm">{current.label}</p>
       <BottomBar className="md:flex">
         {sections.map((item) => (

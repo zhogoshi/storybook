@@ -12,7 +12,7 @@ export function StoryPreview({ slug }: { slug: string }) {
   const story = getStoryBySlug(slug);
   if (!story) notFound();
   return (
-    <Suspense fallback={<PageLoader className="min-h-dvh" />}>
+    <Suspense fallback={<PageLoader className="min-h-app" />}>
       <StoryPreviewContent slug={slug} />
     </Suspense>
   );
@@ -35,7 +35,7 @@ function StoryPreviewContent({ slug }: { slug: string }) {
   }, []);
 
   if (!story) return null;
-  if (!props) return <PageLoader className="min-h-dvh" />;
+  if (!props) return <PageLoader className="min-h-app" />;
 
   const setProp = (key: string, value: unknown) => {
     window.parent.postMessage({ type: PREVIEW_CHANGE, key, value }, window.location.origin);
@@ -43,7 +43,7 @@ function StoryPreviewContent({ slug }: { slug: string }) {
 
   return (
     <PreviewIconStyle value={icons}>
-      <div className={story.fill ? "bg-bg min-h-dvh" : "bg-bg grid min-h-dvh place-items-center p-6"}>
+      <div className={story.fill ? "bg-bg min-h-app" : "bg-bg grid min-h-app place-items-center p-6"}>
         <StoryState onChange={setProp}>{story.render(props)}</StoryState>
       </div>
     </PreviewIconStyle>
