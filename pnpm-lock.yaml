@@ -12,8 +12,8 @@ importers:
         specifier: ^0.1.2
         version: 0.1.2
       '@hogoshi/ui':
-        specifier: ^0.1.14
-        version: 0.1.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-is@19.3.0)(react@19.3.0)(redux@5.0.1)
+        specifier: ^0.1.15
+        version: 0.1.15(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-is@19.3.0)(react@19.3.0)(redux@5.0.1)
       '@hugeicons-pro/core-duotone-rounded':
         specifier: ^4.2.2
         version: 4.3.4
@@ -115,8 +115,8 @@ packages:
   '@hogoshi/tokens@0.1.2':
     resolution: {integrity: sha512-LM4W41ojR17hD0Sr2NbwuLE0BxKhfWnamA6mmU+n3/j0FpZ93IWH7boFxwKwgcTsCbtHnhALMJyhPO+SugW7gA==}
 
-  '@hogoshi/ui@0.1.14':
-    resolution: {integrity: sha512-1o1S5AzF9c2FMzrmc3Nd4CeGLWlzwrWopVYVMHcK0GZG1x9qRaWEfnfW4xDwRXXx5bxhNy+H8Ci7Mk+FHy0LyQ==}
+  '@hogoshi/ui@0.1.15':
+    resolution: {integrity: sha512-Z6R7XSItLq/xl7jLO6SIoO6+KQs7sfWY13Lprk2EOifqbRymrn6ZL4HhOAarUKTmlizWDN3+PsVOTpamC8f20w==}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
@@ -1653,7 +1653,7 @@ snapshots:
 
   '@hogoshi/tokens@0.1.2': {}
 
-  '@hogoshi/ui@0.1.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-is@19.3.0)(react@19.3.0)(redux@5.0.1)':
+  '@hogoshi/ui@0.1.15(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-is@19.3.0)(react@19.3.0)(redux@5.0.1)':
     dependencies:
       '@base-ui/react': 1.9.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@hogoshi/tokens': 0.1.2
