@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu01Icon, Search01Icon } from "@hugeicons-pro/core-stroke-rounded";
-import { Menu01Icon as Menu01FillIcon } from "@hugeicons-pro/core-solid-rounded";
+import { GithubIcon, Menu01Icon as Menu01FillIcon } from "@hugeicons-pro/core-solid-rounded";
 import {
   BottomBar,
   BottomBarItem,
+  Icon,
   Logo,
   Sheet,
   SheetContent,
@@ -28,7 +29,16 @@ export function StorybookMobileHeader() {
         <Logo size="sm" />
         hogoshi
       </a>
-      <ThemeToggle className="ml-auto" />
+      <a
+        href="https://github.com/zhogoshi/storybook"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="GitHub"
+        className="text-fg-muted hover:bg-bg-subtle hover:text-fg ml-auto grid size-8 place-items-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        <Icon icon={GithubIcon} size={16} />
+      </a>
+      <ThemeToggle />
     </TopBar>
   );
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { GithubIcon } from "@hugeicons-pro/core-solid-rounded";
 import { ArrowDown01Icon, ArrowLeft01Icon } from "@hugeicons-pro/core-stroke-rounded";
 import {
   Collapsible,
@@ -29,6 +30,29 @@ import { getStoryIcon } from "../lib/story-icons";
 import { StorybookCommandTrigger } from "./storybook-command";
 
 const SITE = "https://hogoshi.dev";
+const REPO = "https://github.com/zhogoshi/storybook";
+
+export function RepoLink({ hideLabel = false }: { hideLabel?: boolean }) {
+  const link = (
+    <a
+      href={REPO}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="GitHub"
+      className="text-fg-muted hover:bg-bg-subtle hover:text-fg inline-flex h-[calc(var(--row-h)-0.25rem)] w-full cursor-pointer items-center gap-2 overflow-hidden rounded-[var(--radius-sm)] px-3 text-sm whitespace-nowrap outline-none focus-visible:ring-2 focus-visible:ring-ring"
+    >
+      <Icon icon={GithubIcon} size={16} className="shrink-0" />
+      <span className={`${sidebarLabel} ${hideLabel ? "opacity-0" : ""}`}>GitHub</span>
+    </a>
+  );
+  if (!hideLabel) return link;
+  return (
+    <Tooltip>
+      <TooltipTrigger render={link} />
+      <TooltipContent side="right">GitHub</TooltipContent>
+    </Tooltip>
+  );
+}
 
 export function SiteBack({ hideLabel = false }: { hideLabel?: boolean }) {
   const link = (
@@ -191,6 +215,7 @@ export function StorybookSidebar() {
         <StorybookNavItems />
       </SidebarNav>
       <SidebarFooter>
+        <RepoLink hideLabel={collapsed} />
         <ThemeToggle label="Switch theme" hideLabel={collapsed} />
         <SiteBack hideLabel={collapsed} />
       </SidebarFooter>

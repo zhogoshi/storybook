@@ -1,36 +1,18 @@
 # storybook
 
-A Next.js gallery of the Hogoshi kit. This is not the Storybook npm library.
-
-Repository: https://github.com/zhogoshi/storybook
-
-## What
-
-Pages that render `@hogoshi/ui` so a component can be checked without opening a product.
-
-## Why
-
-The kit stays a library. The gallery is an app that depends on the published packages.
-
-## Install and run
+Gallery of `@hogoshi/ui`. https://github.com/zhogoshi/storybook
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Dev server: http://localhost:3000
+http://localhost:3000
 
-```bash
-pnpm build && pnpm start
-```
-
-## Docker
+Routes: `/`, `/tokens`, `/components/[slug]`.
 
 ```bash
 PORT=3010 docker compose up --build
 ```
 
-The process binds `PORT`. When it is unset, dev and start use `3000`. Compose publishes that same port. After `next build`, the image runs `obfuscate-hogoshi .next`. Local `pnpm dev` stays readable. Set `HUGEICONS_NPM_TOKEN` before the image build. In Dokploy, set `PORT` and point the domain at that container port. A push to `main` redeploys this app. From the navigator, `node scripts/deploy.mjs storybook` does the same POST.
-
-Routes are `/`, `/tokens`, and `/components/[slug]`. The app is a PWA: manifest, icons, and `viewport-fit=cover`. Phone is the default preview. Below 1280px the device switch stays on phone.
+`PORT` defaults to `3000`. The image build needs `HUGEICONS_NPM_TOKEN`. Push to `main` redeploys. `node scripts/deploy.mjs storybook` does the same.
