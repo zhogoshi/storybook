@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Home01Icon, Search01Icon, Settings01Icon } from "@hugeicons-pro/core-stroke-rounded";
+import { Home01Icon, Menu01Icon, Search01Icon, Settings01Icon } from "@hugeicons-pro/core-stroke-rounded";
 import {
   Home01Icon as Home01FillIcon,
   BookOpen01Icon,
@@ -15,14 +15,22 @@ import {
   UserGroupIcon,
 } from "@hugeicons-pro/core-solid-rounded";
 import {
+  AppShell,
   BottomBar,
   BottomBarItem,
+  Icon,
   Logo,
   Navbar,
   NavbarItem,
   NavbarMenu,
   NavbarMenuLink,
   NavbarMenus,
+  ShellAction,
+  ShellBrand,
+  ShellLogo,
+  ShellMenu,
+  ShellSearch,
+  ShellTitle,
   Sidebar,
   SidebarFooter,
   SidebarHeader,
@@ -32,6 +40,9 @@ import {
   SidebarProvider,
   SidebarTrigger,
   ThemeToggle,
+  TopBar,
+  shellGlass,
+  toast,
   useSidebar,
 } from "@hogoshi/ui";
 import { defineStory } from "../define-story";
@@ -195,6 +206,100 @@ export const navbarStory = defineStory({
           ].join("\n"),
         ),
       ].join("\n"),
+    ),
+});
+
+function AppShellDemo({ collapsed }: { collapsed: boolean }) {
+  const [active, setActive] = useState<SectionId>("home");
+  const [menu, setMenu] = useState(false);
+  const iconFor = useNavIcon();
+  const current = sections.find((item) => item.id === active)!;
+  const nav = sections.map((item) => (
+    <SidebarItem key={item.id} {...iconFor(active === item.id, item)} active={active === item.id} onClick={() => setActive(item.id)}>
+      {item.label}
+    </SidebarItem>
+  ));
+  return (
+    <AppShell
+      defaultCollapsed={collapsed}
+      sidebar={
+        <Sidebar>
+          <ShellBrand href="#" label="hogoshi" />
+          <ShellSearch onOpen={() => toast("Search", { description: "Open a command palette here." })} />
+          <SidebarNav>{nav}</SidebarNav>
+          <SidebarFooter>
+            <ThemeToggle label="Switch theme" hideLabel={collapsed} />
+          </SidebarFooter>
+        </Sidebar>
+      }
+      topBar={
+        <TopBar contained>
+          <ShellLogo href="#" label="hogoshi" className="md:hidden" />
+          <ShellTitle>{current.label}</ShellTitle>
+          <span className="flex-1" />
+          <ShellAction aria-label="Search" onClick={() => toast("Search")}>
+            <Icon icon={Search01Icon} variant="stroke" size={16} />
+          </ShellAction>
+          <ThemeToggle className={`${shellGlass} ml-auto rounded-full`} />
+        </TopBar>
+      }
+      bottomBar={
+        <>
+          <BottomBar>
+            {sections.map((item) => (
+              <BottomBarItem key={item.id} {...iconFor(active === item.id, item)} active={active === item.id} onClick={() => setActive(item.id)}>
+                {item.label}
+              </BottomBarItem>
+            ))}
+            <BottomBarItem icon={Menu01Icon} active={menu} onClick={() => setMenu(true)}>
+              Menu
+            </BottomBarItem>
+          </BottomBar>
+          <ShellMenu
+            open={menu}
+            onOpenChange={setMenu}
+            brand={
+              <ShellLogo href="#" label="hogoshi">
+                hogoshi
+              </ShellLogo>
+            }
+          >
+            <SidebarNav className="px-0">{nav}</SidebarNav>
+          </ShellMenu>
+        </>
+      }
+    >
+      <div className="mx-auto grid w-full max-w-7xl gap-3 px-4 py-6 lg:px-8 lg:py-8">
+        {Array.from({ length: 8 }, (_, index) => (
+          <div key={index} className="bg-bg-elevated border-border text-fg-muted rounded-[var(--radius-lg)] border p-6 text-sm">
+            {current.label} {index + 1}
+          </div>
+        ))}
+      </div>
+    </AppShell>
+  );
+}
+
+export const appShellStory = defineStory({
+  slug: "app-shell",
+  title: "App shell",
+  category: "Layout",
+  component: "AppShell",
+  description:
+    "Sidebar, top bar, bottom bar, and one scrollport in a frame that fills the screen. Bars sit on the safe-area tokens, content fades under them, and toasts rise above the bottom bar.",
+  fill: true,
+  controls: { collapsed: { type: "boolean", label: "collapsed", default: false } },
+  render: (props) => <AppShellDemo collapsed={Boolean(props.collapsed)} />,
+  code: (props) =>
+    jsx(
+      "AppShell",
+      [
+        ...(props.collapsed ? ["defaultCollapsed"] : []),
+        "sidebar={<Sidebar><ShellBrand label=\"hogoshi\" /><ShellSearch onOpen={open} /><SidebarNav>…</SidebarNav></Sidebar>}",
+        "topBar={<TopBar contained><ShellTitle>Home</ShellTitle><ShellAction>…</ShellAction></TopBar>}",
+        "bottomBar={<BottomBar>…</BottomBar>}",
+      ],
+      "{page}",
     ),
 });
 

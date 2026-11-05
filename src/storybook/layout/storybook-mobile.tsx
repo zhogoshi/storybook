@@ -5,19 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu01Icon, Search01Icon } from "@hugeicons-pro/core-stroke-rounded";
 import { GithubIcon, Menu01Icon as Menu01FillIcon } from "@hugeicons-pro/core-solid-rounded";
-import {
-  BottomBar,
-  BottomBarItem,
-  Icon,
-  Logo,
-  Sheet,
-  SheetContent,
-  SheetTitle,
-  SidebarNav,
-  SidebarProvider,
-  ThemeToggle,
-  TopBar,
-} from "@hogoshi/ui";
+import { BottomBar, BottomBarItem, Icon, ShellLogo, ShellMenu, SidebarNav, ThemeToggle, TopBar } from "@hogoshi/ui";
 import { getStoryIcon } from "../lib/story-icons";
 import { useStorybookCommand } from "./storybook-command";
 import { SiteBack, StorybookNavItems } from "./storybook-sidebar";
@@ -25,10 +13,9 @@ import { SiteBack, StorybookNavItems } from "./storybook-sidebar";
 export function StorybookMobileHeader() {
   return (
     <TopBar contained className="md:hidden">
-      <a href="https://hogoshi.dev" aria-label="hogoshi" className="flex items-center gap-2 rounded-[var(--radius-sm)] text-sm font-semibold tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-ring">
-        <Logo size="sm" />
+      <ShellLogo href="https://hogoshi.dev" label="hogoshi" className="text-sm font-semibold tracking-tight">
         hogoshi
-      </a>
+      </ShellLogo>
       <a
         href="https://github.com/zhogoshi/storybook"
         target="_blank"
@@ -53,7 +40,7 @@ export function StorybookMobileBar() {
 
   return (
     <>
-      <BottomBar className="right-[max(0.75rem,var(--safe-right))] bottom-2 left-[max(0.75rem,var(--safe-left))]">
+      <BottomBar>
         <BottomBarItem
           active={pathname === "/"}
           icon={pathname === "/" ? home.fill : home.stroke}
@@ -74,26 +61,22 @@ export function StorybookMobileBar() {
           Menu
         </BottomBarItem>
       </BottomBar>
-      <Sheet side="left" open={menu} onOpenChange={setMenu}>
-        <SheetContent className="top-[calc(var(--safe-top)+0.75rem)] right-auto bottom-2 left-[max(0.75rem,var(--safe-left))] px-2">
-          <SheetTitle className="px-3 pt-1 text-sm font-semibold">
-            <a href="https://hogoshi.dev" aria-label="hogoshi" className="flex items-center gap-2 rounded-[var(--radius-sm)] outline-none focus-visible:ring-2 focus-visible:ring-ring">
-              <Logo size="sm" />
-              hogoshi
-            </a>
-          </SheetTitle>
-          <SidebarProvider>
-            <div className="flex min-h-0 flex-1 flex-col">
-              <SidebarNav indicatorClassName="bg-bg-subtle/55" className="px-0">
-                <StorybookNavItems />
-              </SidebarNav>
-              <div className="shrink-0 pt-2">
-                <SiteBack />
-              </div>
-            </div>
-          </SidebarProvider>
-        </SheetContent>
-      </Sheet>
+      <ShellMenu
+        open={menu}
+        onOpenChange={setMenu}
+        brand={
+          <ShellLogo href="https://hogoshi.dev" label="hogoshi">
+            hogoshi
+          </ShellLogo>
+        }
+      >
+        <SidebarNav indicatorClassName="bg-bg-subtle/55" className="px-0">
+          <StorybookNavItems />
+        </SidebarNav>
+        <div className="shrink-0 pt-2">
+          <SiteBack />
+        </div>
+      </ShellMenu>
     </>
   );
 }

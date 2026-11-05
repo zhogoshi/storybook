@@ -101,6 +101,7 @@ const STORY_ICONS = {
   separator: { stroke: MinusSignIcon, fill: MinusSignFillIcon },
   skeleton: { stroke: LayoutTable01Icon, fill: LayoutTable01FillIcon },
   card: { stroke: AppWindowIcon, fill: AppWindowFillIcon },
+  "app-shell": { stroke: AppWindowIcon, fill: AppWindowFillIcon },
   progress: { stroke: CreditCardIcon, fill: CreditCardFillIcon },
   chart: { stroke: ChartHistogramIcon, fill: ChartHistogramFillIcon },
   table: { stroke: LayoutTable01Icon, fill: LayoutTable01FillIcon },

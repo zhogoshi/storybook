@@ -10,13 +10,11 @@ import {
   CollapsiblePanel,
   CollapsibleTrigger,
   Icon,
-  Logo,
+  ShellBrand,
   Sidebar,
   SidebarFooter,
-  SidebarHeader,
   SidebarItem,
   SidebarNav,
-  SidebarTrigger,
   ThemeToggle,
   sidebarLabel,
   Tooltip,
@@ -157,32 +155,6 @@ function CategoryGroup({
   );
 }
 
-function StorybookSidebarHeader() {
-  const { collapsed } = useSidebar();
-
-  return (
-    <SidebarHeader className="group/header relative overflow-hidden px-2">
-      <a
-        href={SITE}
-        aria-label="hogoshi"
-        className={`flex min-w-0 items-center gap-2 rounded-[var(--radius-sm)] px-1 whitespace-nowrap outline-none transition-opacity focus-visible:ring-2 focus-visible:ring-ring ${collapsed ? "group-hover/header:pointer-events-none group-hover/header:opacity-0 [@media(hover:none)]:pointer-events-none [@media(hover:none)]:opacity-0" : ""}`}
-      >
-        <Logo size="sm" className="shrink-0" />
-        <span className={`text-sm font-semibold tracking-tight ${sidebarLabel} ${collapsed ? "opacity-0" : ""}`}>
-          hogoshi
-        </span>
-      </a>
-      <SidebarTrigger
-        className={
-          collapsed
-            ? "pointer-events-none absolute top-3 left-3 opacity-0 transition-opacity group-hover/header:pointer-events-auto group-hover/header:opacity-100 focus-visible:pointer-events-auto focus-visible:opacity-100 [@media(hover:none)]:pointer-events-auto [@media(hover:none)]:opacity-100"
-            : "shrink-0"
-        }
-      />
-    </SidebarHeader>
-  );
-}
-
 export function StorybookNavItems() {
   const pathname = usePathname();
   const groups = getStoriesByCategory();
@@ -206,11 +178,9 @@ export function StorybookSidebar() {
   const { collapsed } = useSidebar();
 
   return (
-    <Sidebar className="pt-[calc(var(--safe-top)+0.5rem)] pb-2">
-      <StorybookSidebarHeader />
-      <div className="shrink-0 px-2 pb-2">
-        <StorybookCommandTrigger compact={collapsed} />
-      </div>
+    <Sidebar>
+      <ShellBrand href={SITE} label="hogoshi" />
+      <StorybookCommandTrigger />
       <SidebarNav indicatorClassName="bg-bg-subtle/55">
         <StorybookNavItems />
       </SidebarNav>

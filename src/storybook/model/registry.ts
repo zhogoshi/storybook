@@ -6,7 +6,7 @@ import { checkboxStory, counterStory, sliderStory, switchStory } from "./stories
 import { codeStory, iconStory, pageLoaderStory, scrollStory, spinnerStory, themeStory, toastStory } from "./stories/feedback.story";
 import { inputStory, otpStory, textareaStory } from "./stories/input.story";
 import { chatStory, composerStory } from "./stories/chat.story";
-import { bottomBarStory, navbarStory, sidebarStory } from "./stories/layout.story";
+import { appShellStory, bottomBarStory, navbarStory, sidebarStory } from "./stories/layout.story";
 import { fileUploadStory, imageStory, videoStory } from "./stories/media.story";
 import type { StoryDefinition } from "./types";
 
@@ -23,6 +23,7 @@ export const STORY_REGISTRY: StoryDefinition[] = [
   sliderStory,
   selectStory,
   tabsStory,
+  appShellStory,
   sidebarStory,
   navbarStory,
   bottomBarStory,

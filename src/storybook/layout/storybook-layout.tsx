@@ -1,6 +1,6 @@
 "use client";
 
-import { SidebarInset, SidebarProvider } from "@hogoshi/ui";
+import { AppShell } from "@hogoshi/ui";
 import { StorybookCommandProvider } from "./storybook-command";
 import { StorybookMobileBar, StorybookMobileHeader } from "./storybook-mobile";
 import { StorybookSidebar } from "./storybook-sidebar";
@@ -8,20 +8,9 @@ import { StorybookSidebar } from "./storybook-sidebar";
 export function StorybookLayout({ children }: { children: React.ReactNode }) {
   return (
     <StorybookCommandProvider>
-        <SidebarProvider>
-          <div className="bg-bg fixed inset-0 flex h-app overflow-hidden">
-            <StorybookSidebar />
-            <SidebarInset className="relative flex min-h-0 min-w-0 flex-1 flex-col">
-              <StorybookMobileHeader />
-              <div data-scroll-root className="min-h-0 min-w-0 flex-1 touch-pan-y overflow-x-hidden overflow-y-auto overscroll-y-contain">
-                <div className="mx-auto w-full min-w-0 max-w-4xl px-4 pt-[var(--topbar-space)] pb-[var(--bottombar-space)] md:px-8 md:pt-8 md:pb-[calc(2rem+var(--safe-bottom))]">
-                  {children}
-                </div>
-              </div>
-            </SidebarInset>
-          </div>
-          <StorybookMobileBar />
-        </SidebarProvider>
+      <AppShell sidebar={<StorybookSidebar />} topBar={<StorybookMobileHeader />} bottomBar={<StorybookMobileBar />} contentClassName="md:pt-0">
+        <div className="mx-auto w-full min-w-0 max-w-4xl px-4 md:px-8 md:py-8">{children}</div>
+      </AppShell>
     </StorybookCommandProvider>
   );
 }
