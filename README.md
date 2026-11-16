@@ -15,4 +15,4 @@ Routes: `/`, `/tokens`, `/components/[slug]`.
 PORT=3010 docker compose up --build
 ```
 
-`PORT` defaults to `3000`. The image build needs `HUGEICONS_NPM_TOKEN`. Push to `main` redeploys. `node scripts/deploy.mjs storybook` does the same.
+`PORT` defaults to `3000`. The image build needs `HUGEICONS_NPM_TOKEN`.
